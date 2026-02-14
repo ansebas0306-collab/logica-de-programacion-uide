@@ -1,0 +1,80 @@
+import random
+#Basede datos de palabras(gestionpor el Sistema)
+PALABRAS = [¨python¨,¨programacion¨,¨ahorcado¨,¨diagrama¨,¨logica¨]
+def iniciar_juego():
+     ""Caso de uso: Iniciar Juego""
+     palabra_seceta=
+random.choice (PALABRAS)
+      letras_adivinadas=[]
+      intentos_restantes = 6
+      retun palabras _ secreta,letras _ adivinadas, intentos_restantes
+def ver_progreso(palabras_secretas, letras_ adivinadas):
+     ¨¨¨Caso de uso: Ver Progreso¨¨¨
+     progreso=¨¨
+     for letras in palabra_secreta:
+          if letras in letras_adivinadas:
+             progreso += letras +¨¨
+         else:
+             progreso += ¨_¨
+     return progreso
+def
+ingresar_y_validar_letras(letras_ usadas):
+     ¨¨¨Caso de uso: Ingresar letra/ Palabras¨¨¨
+     while True:
+          entrada = input("/nIngresa una letra o la palabra completa:").lower()
+          if len(entrada)==1
+              if entrada. isalpha()  and
+entrada not in letras_ usadas:
+                  return entrada, False
+             elif entrada in letras _usadas:
+                 print("ya usaste esa letras!")
+             else:
+                   print("ingresa solo letras validas!")
+         else:
+              if entrada isalpha():
+                  return entrada, True
+             else:
+                 print ("Ingresa solo letras validas!")
+def finalizar_juego( gano, palabra_secreta):
+     ¨¨¨Caso de uso: Finlizar juego¨¨¨
+     if gano:
+          print(f"\n¡Felicidades! Adivinaste la palabras: {palabras_secreta}")
+       else:
+          print(f"\n Perdiste...Lapalabraera:{palabra_secreta}")
+ #Flujo principal del juego
+ if__name__== "__main__":
+     while True:
+         palabra, letras_ adiv, intentos =iniciar_ juego()
+         juego _activo= True
+         while juego_activo:
+              print("\n¨+¨-¨*30")
+              print(f"Progreso:{ver_progreso(palabra, letras_adiv)}")
+              print(f"letras usadas:{','.join(letras_adiv)}")
+              print(f"Intentos restantes:{intentos}")
+              Entrada, es_palabra =ingresar_y_validar_letra(letras_adiv)
+              if es_palabra:
+                     if entrada == palabra:
+                         finalizar_juego(True, Palabra)
+                         juego_activo = False 
+                     else:
+                          print ("Palabra incorrecta!")
+                          intentos -= 1
+               else:
+                     letras_adiv. append(entrada)
+                     if entrada in palabra:
+                           print ("Letra correcta!")
+                           #Verificar si ganó
+                           if all (letra in letras_ adiv for letrain palabra):
+finalizar_ juego(True, palabra)
+                              juego_activo = False
+                     else:
+                          print("Letra incorecta!")
+                          intentos -= 1
+               if intentos == 0 and juego_activo:
+                     finalizar_ juego (False, palabras)
+                     juego_ activo = False
+          #Caso de uso: Reiniciar Juego
+          reiniciar=input ("\n¿Quieres jugar de nuevo?(si/no):").lower ()
+          if reiniciar!="s":
+                print("¡Gracias por jugar!")
+                break
